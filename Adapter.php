@@ -12,7 +12,8 @@ namespace Think\Db;
 use src\cores\PluginManager;
 use Think\Model;
 
-class Adapter implements Custom
+class
+Adapter implements Custom
 {
 
     /**
@@ -94,6 +95,26 @@ class Adapter implements Custom
      */
     public static function setCache($name,$value=null, $expire=3600){
         return cache()->set($name, $value, $expire);
+    }
+
+    /**
+     * 实例化模型类（继承自Model类）
+     * User 返回一个UserModel实例
+     * @param $name string
+     * @return Model|false
+     */
+    public static function D($name='') {
+        if(empty($name)) return new Model;
+        if($name[0]==='\\'){
+            $className=$name;
+        }else{
+            $moduleName=maker()->request()->getModuleName();
+            $className="\apps\\$moduleName\models\\$name";
+            if(!class_exists($className)){
+                $className.='Model';
+            }
+        }
+        return class_exists($className)? new $className:false;
     }
 
     /** ------------------------------------以上内容需要按实际情况自定义-------------------------------------------- */
@@ -274,7 +295,9 @@ class Adapter implements Custom
      */
     public static function N($key, $step = 0, $save = false)
     {
-
+        static $data=[];
+        if(!isset($data[$key])){$data[$key]=0;}
+        $data[$key]+=$step;
         return null;
     }
 
@@ -336,5 +359,7 @@ class Adapter implements Custom
             $_model[$guid] = new $class($name,$tablePrefix,$connection);
         return $_model[$guid];
     }
+
+
 
 }

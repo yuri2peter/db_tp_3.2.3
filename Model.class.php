@@ -1437,7 +1437,7 @@ class Model {
     /**
      * 切换当前的数据库连接
      * @access public
-     * @param integer $linkNum  连接序号
+     * @param int $linkNum  连接序号
      * @param mixed $config  数据库连接信息
      * @param boolean $force 强制重新连接
      * @return Model
@@ -1476,7 +1476,7 @@ class Model {
      */
     public function getModelName() {
         if(empty($this->name)){
-            $name = substr(get_class($this),0,-strlen(Adapter:: C('DEFAULT_M_LAYER')));
+            $name = substr(get_class($this),0,-strlen('Model'));
             if ( $pos = strrpos($name,'\\') ) {//有命名空间
                 $this->name = substr($name,$pos+1);
             }else{

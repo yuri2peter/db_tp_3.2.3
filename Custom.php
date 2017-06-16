@@ -9,6 +9,8 @@
 namespace Think\Db;
 
 
+use Think\Model;
+
 interface Custom
 {
     /**
@@ -52,4 +54,14 @@ interface Custom
      * @return bool
      */
     public static function setCache($name,$value=null, $expire=3600);
-}
+
+    /**
+     * 实例化模型类（继承自Model类）
+     * User 返回一个UserModel实例
+     * @param $name string
+     * @return Model
+     */
+    public static function D($name='') ;
+
+
+    }
