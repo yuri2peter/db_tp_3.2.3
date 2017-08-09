@@ -24,7 +24,7 @@ db_tp_3.2.3
 -----------
  GearPHP，作者自用的php框架
  
- 项目地址: [coding(经常更新)](https://git.coding.net/yuri2/gear_php.git)   [github(看心情更新)](https://github.com/yuri2peter/gear_php.git)
+ 项目地址: [github](https://github.com/yuri2peter/gear_php.git)
  
  最后的话
  ----------
